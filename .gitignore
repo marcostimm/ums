@@ -1,1 +1,4 @@
 ums/vendor/*
+ums/var/cache/*
+ums/var/logs/*
+ums/var/sessions/*
