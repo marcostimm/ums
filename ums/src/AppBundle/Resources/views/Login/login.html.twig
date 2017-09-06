@@ -1,0 +1,21 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+
+{% block title %}AppBandle:Login:login{% endblock %}
+
+{% block body %}
+	<div class="login-page">
+		<h1>UMS</h1>
+        {% if errors %}
+			<div class="alert alert-danger">{{errors.messageKey}}</div>
+        {% endif %}
+		<div class="form">
+			<form action="{{ path('login') }}" method="post">
+				<input type="text" name="_username" id="username" class="form-controll" value="{{username}}" placeholder="Username">
+				<input type="password" name="_password" id="password" class="form-controll" placeholder="Password">
+				<button>login</button>
+				<p class="message">admin / admin</p>
+			</form>
+		</div>
+	</div>
+{% endblock %}

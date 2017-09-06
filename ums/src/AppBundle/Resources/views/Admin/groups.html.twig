@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>UMS</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/blue.css') }}" />
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" />
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+</head>
+
+<body class="fix-header card-no-border">
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+</div>
+
+<div id="main-wrapper">
+    <header class="topbar">
+        <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">
+                    <b>
+                        UMS
+                    </b>
+                </a>
+            </div>
+
+            <div class="navbar-collapse">
+
+                <ul class="navbar-nav my-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="profile-pic m-r-5" />Markarn Doe</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+            {% include 'AppBundle::nav.html.twig' %}
+        </div>
+    </aside>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <div class="col-md-6 col-8 align-self-center">
+                    <h3 class="text-themecolor m-b-0 m-t-0">Groups</h3>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item active">Groups</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row">
+                {% for message in app.flashes('group-success') %}
+                    <div class="card" style="width:100%"><div class="card-block alert-success">{{ message }}</div></div>
+                {% endfor %}
+                {% for message in app.flashes('group-error') %}
+                    <div class="card" style="width:100%"><div class="card-block alert-danger">{{ message }}</div></div>
+                {% endfor %}
+                <div class="col-lg-12 col-xlg-9 col-md-7">
+                    <div class="card">
+                        <div class="card-block">
+                            <form method="post" action="/group" class="form-horizontal form-material">
+                                <div class="form-group">
+                                    <label class="col-md-12">Group Name</label>
+                                    <div class="col-md-12">
+                                        <input name="name" type="text" placeholder="" class="form-control form-control-line">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success">Add Group</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- column -->
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if groups is empty %}
+                                        <tr>
+                                            <td colspan="2">no groups yet</td>
+                                        </tr>
+                                    {% endif %}
+                                    {% for group in groups %}
+                                    <tr>
+                                        <td>{{ group.id|e }}</td>
+                                        <td><strong>{{ group.name|e }}</strong> <span class="muted small">({{ group.userscont }} users)</span></td>
+                                        <th><a href="/group/delete/{{ group.id|e }}"><i style="color: red" class="fa fa-times m-r-10" aria-hidden="true"></i></a></th>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="footer text-center">
+            © 2017 Monster Admin by wrappixel.com
+        </footer>
+
+    </div>
+</div>
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('plugins/bootstrap/js/tether.min.js') }}"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+<script src="{{ asset('js/waves.js') }}"></script>
+<script src="{{ asset('js/sidebarmenu.js') }}"></script>
+<script src="{{ asset('plugins/sticky-kit-master/dist/sticky-kit.min.js') }}"></script>
+<script src="{{ asset('js/custom.min.js') }}"></script>
+
+</body>
+
+</html>
