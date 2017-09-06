@@ -42,6 +42,7 @@ class UserController extends FOSRestController
         } else {
             // replace this example code with whatever you need
             return $this->render('AppBundle:Admin:users.html.twig', [
+                'auth'  => $user = $this->getUser(),
                 'users' => $users
             ]);
         }
@@ -104,6 +105,7 @@ class UserController extends FOSRestController
             $groups = $this->getDoctrine()->getRepository(UMSGroup::class)->findAll();
 
             return $this->render('AppBundle:Admin:user-edit.html.twig', [
+                'auth'  => $user = $this->getUser(),
                 'user' => $user,
                 'userGroupsId' => $user->getGroupsID(),
                 'groups' => $groups

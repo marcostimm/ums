@@ -36,6 +36,7 @@ class GroupController extends Controller
             return $groups;
         } else {
             return $this->render('AppBundle:Admin:groups.html.twig', [
+                'auth'  => $user = $this->getUser(),
                 'groups'    => $groups
             ]);
         }
